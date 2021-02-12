@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proy1;
-
 
 
 /**
  *
- * @author marcos
+ * @author 
  */
+import javax.swing.JOptionPane;
 public class Caratula extends javax.swing.JFrame {
    
     /**
@@ -18,6 +17,7 @@ public class Caratula extends javax.swing.JFrame {
      */
     public Caratula() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
    
     //este metodo no funcionaba con paarentesis
