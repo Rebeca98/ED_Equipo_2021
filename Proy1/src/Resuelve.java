@@ -31,25 +31,24 @@ public class Resuelve {
         return true; //aun no hacemos nada
     }
     
-    public void agregarCad(String cadena){
+    public String[] agregarCad(String cadena){
         String[] arr = new String[cadena.length()];
         
         StringTokenizer tokens = new StringTokenizer(cadena," ");
         int nDatos=tokens.countTokens();
         
-//        double[] datos=new double[nDatos];
         int i=0;
         while(tokens.hasMoreTokens()){
             String str=tokens.nextToken(); //
             arr[i] = str;
-//            datos[i]=Double.valueOf(str).doubleValue();
+
             System.out.print(arr[i]);
             i++;
         }
-
+        return arr;
         
     }
-    
+//    
 //    public static String[] agregarCad(String cadena){
 //        String[] arr;
 //        String aux;
@@ -58,7 +57,7 @@ public class Resuelve {
 //        
 //        arr= new String[cont];
 //        for(int i = 0; i < cont; i++){
-//            aux = Character.toString(cadena.charAt(0)).trim();
+//            aux = Character.toString(cadena.charAt(i)).trim();
 //            //j=i;
 //            try{
 //            while(!aux.equals("+") || !aux.equals("-") ||!aux.equals("*") ||!aux.equals("/")){
@@ -117,7 +116,24 @@ public class Resuelve {
 	}
         return operadorActual;
     }
-    
+    public static int getPrioridad(String c){
+        int ans = 0; 
+        switch(c){
+            case ("+"): 
+                ans = 1; 
+                break; 
+            case("-"): 
+                ans = 1; 
+                break;
+            case("*"): 
+                ans = 2; 
+                break; 
+            case("/"): 
+                ans = 2; 
+                break;
+        }
+        return ans; 
+    }
     public  boolean JerarquiaOperaciones(String cadena, String elemPila) {
         boolean mayorJerarquia;
         
@@ -173,7 +189,7 @@ public class Resuelve {
         while(i < cad.length) {
             if(Operador(cad[i]).equals("num")){
                 resultado = resultado + cad[i]; //guarda el numero en resultado
-                resultado += " ";
+                resultado += "";
             }  
             else{
                 //caso de los paréntesis
@@ -183,7 +199,7 @@ public class Resuelve {
                 else if(Operador(cad[i]).equals(")")) {
                     while(!pila.peek().equals("(")) {
                         resultado = resultado + pila.pop(); //solo se pasa los signos dentro de parentesis
-                        resultado += " ";
+                        resultado += "";
                     }//termina while
                     pila.pop(); //eliminamos el '(', se vacia la pila
 		}
@@ -194,11 +210,11 @@ public class Resuelve {
                         }
                         else { //esto sucederá porque * tiene más jerarquia que +
                             resultado = resultado + pila.pop(); //agregamos + al resultado y quitamos + de pila
-                            resultado += " ";
+                            resultado += "";
                             if(!pila.isEmpty()) { //ahora que tenemos * en pila
                                 while(!JerarquiaOperaciones(cad[i],pila.peek())) { //mientras no esten ordenadas, division es mejor que *
                                         resultado = resultado + pila.pop(); //quitamos * de pila y agregamos a resultado
-                                        resultado += " ";
+                                        resultado += "";
                                 }
                             }
                             pila.push(cad[i]); //finalmente agregamos * a pila //despues agregamos / a pila
@@ -213,9 +229,9 @@ public class Resuelve {
         }//termine while
         while(!pila.isEmpty()) {
             resultado = resultado + pila.pop(); //agregamos la division 
-            resultado += " ";
+            resultado += "";
         }
-        return resultado;
+        return resultado.trim();
     }
     
     

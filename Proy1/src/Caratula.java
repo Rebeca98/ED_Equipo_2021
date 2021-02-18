@@ -509,25 +509,37 @@ public class Caratula extends javax.swing.JFrame {
         Resuelve s; 
         s = new Resuelve();
         
-//        String cadena, resultado; 
-//        cadena = "(5+5)";
-//        String cad[], cadPosfija[];
-//        cad = new String[cadena.length()];
-//        cadPosfija = new String[cadena.length()];
-//        cadPosfija = s.ingresaCadena(cadena);
+        String cadena, resultado; 
+        cadena = "(5+5)*3";
+        String cad[];
+        cad = new String[cadena.length()];
+        
+        cad = s.ingresaCadena(cadena);
 //        
+        for(int i = 0; i < cad.length; i++)
+        {
+            System.out.print(cad[i]);
+        }
+        System.out.println("\n");
+        resultado = s.convierteAPostfijo(cad);
+        System.out.println("res: " + resultado);
+        String cad2[];
+        cad2 = new String[cadena.length()];
+
+        cad2 = s.ingresaCadena(resultado);
 //        for(int i = 0; i < cad.length; i++)
 //        {
-//            System.out.print(cad[i]);
+//            System.out.print(cad2[i]);
 //        }
 //        System.out.println("\n");
-//        resultado = s.convierteAPostfijo(cad);
+//        System.out.print(cad2[0]);
+//        System.out.print(cad2[1]);
+//        System.out.print(cad2[2]);
 //        
-//        cad = s.ingresaCadena(resultado);
-//        for(int i = 0; i < cad.length; i++)
-//        {
-//            System.out.print(cad[i]);
-//        }
+        
+        System.out.println("\n");
+        oper = s.resolverPosfijo(cad2);
+        System.out.println(oper);
 //        
 //        String arr[];
 //        arr = new String[3];
@@ -535,25 +547,24 @@ public class Caratula extends javax.swing.JFrame {
 //        arr[1] = "2";
 //        arr[2] = "+";
 //        num = Double.parseDouble(arr[0]); //pasa de String a double(prueba)
-//        
-//          System.out.println("\n");
-//          oper = s.resolverPosfijo(arr);
-//          System.out.println(oper);
-//        System.out.println("solucion: " + entrada);
+//        oper = s.resolverPosfijo(arr);
+//        System.out.println(oper);
+          
+     
         
-        s.agregarCad("-333 + 1");
-        System.out.println("\n");
-        String strDatos="6.3\n6.2\n6.4\n6.2"; 
-	StringTokenizer tokens=new StringTokenizer(strDatos, "\n");
-        int nDatos=tokens.countTokens();
-        double[] datos=new double[nDatos];
-        int i=0;
-        while(tokens.hasMoreTokens()){
-            String str=tokens.nextToken();
-            datos[i]=Double.valueOf(str).doubleValue();
-            System.out.println(datos[i]);
-            i++;
-        }
+//        s.agregarCad("-333 + 1");
+//        System.out.println("\n");
+//        String strDatos="6.3\n6.2\n6.4\n6.2"; 
+//	StringTokenizer tokens=new StringTokenizer(strDatos, "\n");
+//        int nDatos=tokens.countTokens();
+//        double[] datos=new double[nDatos];
+//        int i=0;
+//        while(tokens.hasMoreTokens()){
+//            String str=tokens.nextToken();
+//            datos[i]=Double.valueOf(str).doubleValue();
+//            System.out.println(datos[i]);
+//            i++;
+//        }
         
     }//aquiTerminaMain
 
