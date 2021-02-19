@@ -503,44 +503,55 @@ public class Caratula extends javax.swing.JFrame {
 //                new Caratula().setVisible(true);
 //            }
 //        });
-        double oper, num;
-//        PilaA pila;
-//        pila = new PilaA();
+        double oper;
+
         Resuelve s; 
         s = new Resuelve();
         
-        String cadena, resultado; 
-        cadena = "(5+5)*3";
-        String cad[];
-        cad = new String[cadena.length()];
+        String cadena = "777 + 3 * 4";
+        String resultado;
+        String cad[] = new String[cadena.length()];
         
-        cad = s.ingresaCadena(cadena);
-//        
-        for(int i = 0; i < cad.length; i++)
+        cad = s.agregarCad(cadena);
+  
+        //para ver el arreglo
+        int i =0;
+        while(!(cad[i] == null))
         {
-            System.out.print(cad[i]);
+            System.out.println(cad[i]);
+            i++;
         }
-        System.out.println("\n");
-        resultado = s.convierteAPostfijo(cad);
-        System.out.println("res: " + resultado);
+        
+        
+//        System.out.println("\n");
+       resultado = s.convierteAPostfijo(cad);
+       System.out.println("res: " + resultado);
         String cad2[];
         cad2 = new String[cadena.length()];
 
-        cad2 = s.ingresaCadena(resultado);
-//        for(int i = 0; i < cad.length; i++)
-//        {
-//            System.out.print(cad2[i]);
-//        }
+        cad2 = s.agregarCad(resultado);
+        
+        int j = 0;
+        while(!(cad2[j] == null))
+        {
+            System.out.println(cad2[j]);
+            j++;
+        }
+        
 //        System.out.println("\n");
 //        System.out.print(cad2[0]);
 //        System.out.print(cad2[1]);
 //        System.out.print(cad2[2]);
 //        
         
-        System.out.println("\n");
-        oper = s.resolverPosfijo(cad2);
-        System.out.println(oper);
+          System.out.println("\n");
+          oper = s.resolverPosfijo(cad2);
+          System.out.println(oper);
 //        
+
+
+
+
 //        String arr[];
 //        arr = new String[3];
 //        arr[0] = "6";
@@ -551,8 +562,12 @@ public class Caratula extends javax.swing.JFrame {
 //        System.out.println(oper);
           
      
+
         
-//        s.agregarCad("-333 + 1");
+        
+        
+        
+        
 //        System.out.println("\n");
 //        String strDatos="6.3\n6.2\n6.4\n6.2"; 
 //	StringTokenizer tokens=new StringTokenizer(strDatos, "\n");

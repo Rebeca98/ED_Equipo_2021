@@ -16,78 +16,78 @@ public class Resuelve {
     public Resuelve() {
     }
     
-    public boolean revisaErrores(String input) {
-        boolean correcto, balanceados; 
+     public static boolean revisaErrores(String input) {
+        boolean balanceados; 
         RevisorParentesis revisor;
         revisor = new RevisorParentesis(input);
-        correcto = true;
+        int f = input.length()-1;
+        int i;
+        int contoper;
+        contoper = 0;
+        int linoper;
+        linoper = 0;
+        
         
         //si no estan balanceados los paréntesis
         balanceados = revisor.analisis();
-        if(balanceados == false)
-            System.out.println("Error, no estan balanceados paréntesis");
+        
+        if(balanceados == true ){
+            if(input.charAt(1) == '+' || input.charAt(1) == '-' || input.charAt(1) == '*' || input.charAt(1) == '/' || input.charAt(0) == '.' || input.charAt(f - 1) == '+' || input.charAt(f - 1) == '-' || input.charAt(f - 1) == '*' || input.charAt(f - 1) == '/' || input.charAt(f) == '.'){
+                balanceados = false;   
+            }
+            if(balanceados == true){
+                for(i = 0; i < f; i++){
+                    if(input.charAt(i) == '+' || input.charAt(i) == '-' || input.charAt(i) == '*' || input.charAt(i) == '/' || input.charAt(i) == '.'){
+                        contoper++;
+                    }
+                }
+                
+                for(i = 0; i < f; i++){
+                    
+                    if(input.charAt(i) == '+' || input.charAt(i) == '-' || input.charAt(i) == '*' || input.charAt(i) == '/' || input.charAt(i) == '.' ){
+                        linoper++;
+                        if(input.charAt(i + 1) == '.'){
+                            balanceados = false;
+                        }
+                        if(linoper < contoper && balanceados){
+                            if(input.charAt(i + 3) == '+' || input.charAt(i + 3) == '-' || input.charAt(i + 3) == '*' || input.charAt(i + 3) == '/' ){
+                                balanceados = false;
+                        
+                            }
+                            
+                        }
+                        
+                        
+                    
+                    }
+                
+                }
+                
+            }
+            
+                
+        }
 
         //Si el primer o ultimo caracter son operadores, no tiene operando: error
-        return true; //aun no hacemos nada
+        return balanceados; //aun no hacemos nada
     }
     
     public String[] agregarCad(String cadena){
         String[] arr = new String[cadena.length()];
         
         StringTokenizer tokens = new StringTokenizer(cadena," ");
-        int nDatos=tokens.countTokens();
-        
+  
         int i=0;
         while(tokens.hasMoreTokens()){
             String str=tokens.nextToken(); //
             arr[i] = str;
-
-            System.out.print(arr[i]);
             i++;
         }
         return arr;
         
     }
-//    
-//    public static String[] agregarCad(String cadena){
-//        String[] arr;
-//        String aux;
-//        int cont=cadena.length();
-//        int j=0;
-//        
-//        arr= new String[cont];
-//        for(int i = 0; i < cont; i++){
-//            aux = Character.toString(cadena.charAt(i)).trim();
-//            //j=i;
-//            try{
-//            while(!aux.equals("+") || !aux.equals("-") ||!aux.equals("*") ||!aux.equals("/")){
-//                aux = Character.toString(cadena.charAt(j)).trim();
-//                arr[i]+=""+cadena.charAt(j);
-//                j++;
-//            }
-//            }
-//            catch(Exception e){
-//                System.out.println("AQUÍ");
-//            }
-//            arr[i] = aux;
-//        }
-// 
-//        return arr;
-//    }
-    public String[] ingresaCadena(String cadena)
-    {
-        //suponiendo que no hay errores
-        String cad[];
-        cad = new String[cadena.length()];
-        int i; 
-        String aux;
-        for(i = 0; i < cadena.length(); i++)
-        {
-            aux = Character.toString(cadena.charAt(i)).trim();
-            cad[i] = aux;
-        }
-        return cad;
-    }
+
+    
     
     public String Operador(String cad) { //método útil para hacer estas preguntas en otros métodos
         String operadorActual;
@@ -134,62 +134,30 @@ public class Resuelve {
         }
         return ans; 
     }
+    
+    
     public  boolean JerarquiaOperaciones(String cadena, String elemPila) {
         boolean mayorJerarquia;
-        
         //nos preguntamos si el simbolo de la cadena tiene mayor jerarquia que el que esta en el tope de la pila
-        if(Operador(cadena).equals("+") && Operador(elemPila).equals("*")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("+") && Operador(elemPila).equals("/")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("-") && Operador(elemPila).equals("*")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("-") && Operador(elemPila).equals("/")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("+") && Operador(elemPila).equals("+")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("-") && Operador(elemPila).equals("-")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("*") && Operador(elemPila).equals("*")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("/") && Operador(elemPila).equals("*")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("*") && Operador(elemPila).equals("/")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("/") && Operador(elemPila).equals("*")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("+") && Operador(elemPila).equals("-")) {
-			mayorJerarquia = false;
-		}
-		else if(Operador(cadena).equals("-") && Operador(elemPila).equals("+")) {
-			mayorJerarquia = false;
-		}
-		else {
-			mayorJerarquia = true;
-		}
+        if( getPrioridad(Operador(cadena)) <= getPrioridad(Operador(elemPila))) {
+            mayorJerarquia = false;
+        }else {
+		mayorJerarquia = true;
+	}   		
         return mayorJerarquia;
     }
+    
     public String convierteAPostfijo(String[] cad){
         String resultado;
         PilaA<String> pila;
         pila = new PilaA();
         int i = 0; 
-        resultado = "";
+        resultado = " ";
         //usaremos una pila para determinar jerarquia
-        while(i < cad.length) {
+        while(!(cad[i] == null)) { //while(i < cad.length) 
             if(Operador(cad[i]).equals("num")){
                 resultado = resultado + cad[i]; //guarda el numero en resultado
-                resultado += "";
+                resultado += " ";
             }  
             else{
                 //caso de los paréntesis
@@ -199,7 +167,7 @@ public class Resuelve {
                 else if(Operador(cad[i]).equals(")")) {
                     while(!pila.peek().equals("(")) {
                         resultado = resultado + pila.pop(); //solo se pasa los signos dentro de parentesis
-                        resultado += "";
+                        resultado += " ";
                     }//termina while
                     pila.pop(); //eliminamos el '(', se vacia la pila
 		}
@@ -210,11 +178,11 @@ public class Resuelve {
                         }
                         else { //esto sucederá porque * tiene más jerarquia que +
                             resultado = resultado + pila.pop(); //agregamos + al resultado y quitamos + de pila
-                            resultado += "";
+                            resultado += " ";
                             if(!pila.isEmpty()) { //ahora que tenemos * en pila
                                 while(!JerarquiaOperaciones(cad[i],pila.peek())) { //mientras no esten ordenadas, division es mejor que *
                                         resultado = resultado + pila.pop(); //quitamos * de pila y agregamos a resultado
-                                        resultado += "";
+                                        resultado += " ";
                                 }
                             }
                             pila.push(cad[i]); //finalmente agregamos * a pila //despues agregamos / a pila
@@ -229,9 +197,9 @@ public class Resuelve {
         }//termine while
         while(!pila.isEmpty()) {
             resultado = resultado + pila.pop(); //agregamos la division 
-            resultado += "";
+            resultado += " ";
         }
-        return resultado.trim();
+        return resultado;
     }
     
     
@@ -242,7 +210,9 @@ public class Resuelve {
         double num1, num2, num;
         num = 0;
         double operacion = 0;
-        for(int i = 0; i < cad.length; i ++) {
+        int i = 0;
+        while(!(cad[i] == null)){   
+//        for(int i = 0; i < 3; i ++){ //hay que parchar esto
             if(cad[i].equals("+")) {
                 num1 = pila.pop();
                 num2 = pila.pop();
@@ -262,18 +232,25 @@ public class Resuelve {
                 operacion = num1*num2;
                 pila.push(operacion);
             }
+            
             else if(cad[i].equals("/")){
                 num1 = pila.pop();
                 num2 = pila.pop();
-                operacion = num1/num2;
-                if(num2 == 0)
-                    System.out.println("Error");
+                
+                try{
+                    operacion = num2/num1;    
+                }
+                catch(Exception e ){
+                    System.out.println("Math Error");
+                    
+                }                 
                 pila.push(operacion);
             }
             else {
                 num = Double.parseDouble(cad[i]);
                 pila.push(num);
             }
+            i++;
         }  
        return operacion; 
     } 
