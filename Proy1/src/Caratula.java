@@ -508,7 +508,7 @@ public class Caratula extends javax.swing.JFrame {
         Resuelve s; 
         s = new Resuelve();
         
-        String cadena = "777 + 3 * 4";
+        String cadena = "( 6 + 1.5 )  * 5 + 5.5 / 5 + 6";
         String resultado;
         String cad[] = new String[cadena.length()];
         
@@ -526,17 +526,17 @@ public class Caratula extends javax.swing.JFrame {
 //        System.out.println("\n");
        resultado = s.convierteAPostfijo(cad);
        System.out.println("res: " + resultado);
-        String cad2[];
-        cad2 = new String[cadena.length()];
+//        String cad2[];
+//        cad2 = new String[cadena.length()];
 
-        cad2 = s.agregarCad(resultado);
-        
-        int j = 0;
-        while(!(cad2[j] == null))
-        {
-            System.out.println(cad2[j]);
-            j++;
-        }
+//        cad2 = s.agregarCad(resultado);
+//        
+//        int j = 0;
+//        while(!(cad2[j] == null))
+//        {
+//            System.out.println(cad2[j]);
+//            j++;
+//        }
         
 //        System.out.println("\n");
 //        System.out.print(cad2[0]);
@@ -544,10 +544,10 @@ public class Caratula extends javax.swing.JFrame {
 //        System.out.print(cad2[2]);
 //        
         
-          System.out.println("\n");
-          oper = s.resolverPosfijo(cad2);
-          System.out.println(oper);
-//        
+//          System.out.println("\n");
+//          oper = s.resolverPosfijo(cad2);
+//          System.out.println(oper);
+////        
 
 
 
